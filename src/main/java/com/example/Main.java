@@ -11,61 +11,46 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws UnknownHostException, IOException {
         
+
+
         System.out.println("client partito");
         Socket s = new Socket("localhost", 3000);
 
         System.out.println("il client si è collegato \n");
 
-        String scelta;
-
         BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
         DataOutputStream out = new DataOutputStream(s.getOutputStream());
         
-        String stringaInviata;
-
         Scanner scanner = new Scanner(System.in);
-
         String stringaRicevuta;
+       
 
         do{
-            System.out.println("Inserisci un numero \n");
-            scelta = scanner.nextLine();
-            stringaRicevuta = in.readLine();
-            switch(scelta){
-                 
-                
+            System.out.println("Vuoi cominciare una nuova partita? Digita s per sì, e n per no.");
+            out.writeBytes(scanner.nextLine() + "\n");
 
-                case ">": 
-                    System.out.println("numero troppo grande digitare di nuovo");
+            System.out.println("Inserisci un numero \n");
+            out.writeBytes(scanner.nextLine() + "\n");
+            
+            stringaRicevuta = in.readLine();
+
+            switch(stringaRicevuta){
+                case "<": 
+                    System.out.println(" il numero digitato è troppo piccolo");
+                    break;
+                
+                case ">":
+                    System.out.println("Il numero digitato è troppo grande");
                     break;
 
-                
-                    case "<": 
-                        System.out.println("numero troppo piccolo digitare di nuovo");
-                        break;
-                    
-                        case "=": 
+                case "=":
+                    System.out.println("valore corretto");
+                    System.out.println("tentativi totali: " + in.readLine());
+                    break;
 
-                            System.out.println("Digita la frase: ");
-                            stringaInviata = scanner.nextLine();
-                            out.writeBytes("R" + "\n");
-                            if(in.readLine().equals("frase?")){
-                                out.writeBytes(stringaInviata + "\n");
-                                
-
-                            }
-                            break;
-                        case "0":
-                            out.writeBytes("!" + '\n');
-                            break;
-                        
-                        default:
-                           out.writeBytes(scelta + '\n'); 
-                           if(in.readLine().equals("!!")){
-                            System.out.println("Crisi di governo: Marracash ha fatto la piadina \n");
-                           }
+                default:
+                    System.out.println("Errore, ritentare con un numero minore di 100 e maggiore di 0");
             }
-
-        }while(!scelta.equals("0"));
+        }while(!stringaRicevuta.equals("="));
     }
 }
