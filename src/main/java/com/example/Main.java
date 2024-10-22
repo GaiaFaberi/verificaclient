@@ -26,8 +26,7 @@ public class Main {
        
 
         do{
-            System.out.println("Vuoi cominciare una nuova partita? Digita s per sì, e n per no.");
-            out.writeBytes(scanner.nextLine() + "\n");
+            
 
             System.out.println("Inserisci un numero \n");
             out.writeBytes(scanner.nextLine() + "\n");
