@@ -26,8 +26,6 @@ public class Main {
        
 
         do{
-            
-
             System.out.println("Inserisci un numero \n");
             out.writeBytes(scanner.nextLine() + "\n");
             
@@ -35,16 +33,16 @@ public class Main {
 
             switch(stringaRicevuta){
                 case "<": 
-                    System.out.println(" il numero digitato è troppo piccolo");
+                    System.out.println("Il numero digitato è troppo piccolo \n");
                     break;
                 
                 case ">":
-                    System.out.println("Il numero digitato è troppo grande");
+                    System.out.println("Il numero digitato è troppo grande \n");
                     break;
 
                 case "=":
-                    System.out.println("valore corretto");
-                    System.out.println("tentativi totali: " + in.readLine());
+                    System.out.println("valore corretto \n");
+                    System.out.println("Hai indovinato in " + in.readLine() + " tenativi");
                     break;
 
                 default:
